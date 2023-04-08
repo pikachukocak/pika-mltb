@@ -114,6 +114,7 @@ def get_readable_message():
             msg += f"<b>_____《🐱 Pik4Bot 🐱》_____</b>"
             msg += f"\n\n<b>☞ <a href='{download.message.link}'>{download.status()}</a>: </b>"
         else:
+            msg += f"<b>_____《🐱 Pik4Bot 🐱》_____</b>"
             msg += f"<b>☞ {download.status()}: </b>"
         msg += f"<code>{escape(f'{download.name()}')}</code>"
         if download.status() not in [MirrorStatus.STATUS_SPLITTING, MirrorStatus.STATUS_SEEDING]:
