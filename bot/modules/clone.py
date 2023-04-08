@@ -106,7 +106,7 @@ async def cloneNode(client, message):
                     await update_all_messages()
             except:
                 pass
-        cc = f'\n\n<b>msg += f'☞ Clone_By: </b>{tag}'
+        cc = f'\n\n<b>☞ Clone_By: </b>{tag}'
         if button in ["cancelled", ""]:
             await sendMessage(message, f"{tag} {result}")
         else:
