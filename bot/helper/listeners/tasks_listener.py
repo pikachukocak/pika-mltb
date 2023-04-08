@@ -9,7 +9,7 @@ from asyncio import create_subprocess_exec, sleep, Event
 from bot import Interval, aria2, DOWNLOAD_DIR, download_dict, download_dict_lock, LOGGER, DATABASE_URL, \
     MAX_SPLIT_SIZE, config_dict, status_reply_dict_lock, user_data, non_queued_up, non_queued_dl, queued_up, \
     queued_dl, queue_dict_lock
-from bot.helper.ext_utils.bot_utils import sync_to_async, get_readable_file_size
+from bot.helper.ext_utils.bot_utils import sync_to_async, get_readable_file_size, get_readable_time
 from bot.helper.ext_utils.fs_utils import get_base_name, get_path_size, clean_download, clean_target, \
     is_first_archive_split, is_archive, is_archive_split
 from bot.helper.ext_utils.leech_utils import split_file
@@ -50,6 +50,7 @@ class MirrorLeechListener:
         self.suproc = None
         self.sameDir = sameDir
         self.rcFlags = rcFlags
+        self.extra_details = {'startTime' : time()}
         self.upPath = upPath or config_dict['DEFAULT_UPLOAD']
 
     async def clean(self):
