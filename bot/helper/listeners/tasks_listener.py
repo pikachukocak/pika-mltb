@@ -303,11 +303,10 @@ class MirrorLeechListener:
     async def onUploadComplete(self, link, size, files, folders, typ, name, rclonePath=''):
         if self.isSuperGroup and config_dict['INCOMPLETE_TASK_NOTIFIER'] and DATABASE_URL:
             await DbManger().rm_complete_task(self.message.link)
-        msg = f'<b>_____《🐱 Pik4Bot 🐱》_____</b>\n\n<b>☞ Name</b>: <code>{escape(name)}</code>\n<b>☞ Size</b>: {get_readable_file_size(size)}'
+        msg = f'<b>_____《🐱 Pik4Bot 🐱》_____</b>\n\n<b>☞ Name</b>: <code>{escape(name)}</code>\n<b>☞ Size</b>: {get_readable_file_size(size)}\n<b>☞ Elapsed</b>: {get_readable_time(time() - self.extra_details['startTime'])}'
         LOGGER.info(f'Done Uploading {name}')
         if self.isLeech:
             msg += f'\n<b>☞ Total Files: </b>{folders}'
-            msg += f"\n<b>☞ Elapsed</b>: {get_readable_time(time() - self.extra_details['startTime'])}"
             if typ != 0:
                 msg += f'\n<b>☞ Corrupted Files: </b>{typ}'
             msg += f'\n\n<b>☞ Leech_By: </b>{self.tag}\n\n'
