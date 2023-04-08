@@ -129,12 +129,12 @@ def get_readable_message():
         elif download.status() == MirrorStatus.STATUS_SEEDING:
             msg += f"\n<b>☞ Size: </b>{download.size()}"
             msg += f"\n<b>☞ Speed: </b>{download.upload_speed()}"
-            msg += f" | <b>Uploaded: </b>{download.uploaded_bytes()}"
-            msg += f"\n<b>☞ Ratio: </b>{download.ratio()}"
-            msg += f" | <b> Time: </b>{download.seeding_time()}"
+            msg += f" | <b>☞ Uploaded: </b>{download.uploaded_bytes()}"
+            msg += f"\n<b>Ratio: </b>{download.ratio()}"
+            msg += f" | <b>☞ Time: </b>{download.seeding_time()}"
         else:
-        msg += f"\n<b>☞ Size: </b>{download.size()}"
-        msg += f"\n<b>☞ To Cancel:</b> <code>/{BotCommands.CancelMirror} {download.gid()}</code>\n\n"
+            msg += f"\n<b>☞ Size: </b>{download.size()}"
+        msg += f"\n<b>To Cancel:</b> <code>/{BotCommands.CancelMirror} {download.gid()}</code>\n\n"
     if len(msg) == 0:
         return None, None
     dl_speed = 0
