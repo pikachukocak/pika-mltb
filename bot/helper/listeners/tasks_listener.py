@@ -52,6 +52,7 @@ class MirrorLeechListener:
         self.sameDir = sameDir
         self.rcFlags = rcFlags
         self.extra_details = {'startTime' : time()}
+        self.startTime = time()
         self.upPath = upPath or config_dict['DEFAULT_UPLOAD']
 
     async def clean(self):
