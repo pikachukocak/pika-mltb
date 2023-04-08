@@ -111,28 +111,29 @@ def get_readable_message():
         globals()['PAGE_NO'] -= 1
     for download in list(download_dict.values())[STATUS_START:STATUS_LIMIT+STATUS_START]:
         if download.message.chat.type.name in ['SUPERGROUP', 'CHANNEL']:
-            msg += f"<b><a href='{download.message.link}'>{download.status()}</a>: </b>"
+            msg += f"<b>_____《🐱 Pik4Bot 🐱》_____</b>\n\n"
+            msg += f"<b>☞ <a href='{download.message.link}'>{download.status()}</a>: </b>"
         else:
-            msg += f"<b>{download.status()}: </b>"
+            msg += f"<b>☞ {download.status()}: </b>"
         msg += f"<code>{escape(f'{download.name()}')}</code>"
         if download.status() not in [MirrorStatus.STATUS_SPLITTING, MirrorStatus.STATUS_SEEDING]:
-            msg += f"\n{get_progress_bar_string(download.progress())} {download.progress()}"
-            msg += f"\n<b>Processed:</b> {download.processed_bytes()} of {download.size()}"
-            msg += f"\n<b>Speed:</b> {download.speed()} | <b>ETA:</b> {download.eta()}"
+            msg += f"\n<b>☞</b> {get_progress_bar_string(download.progress())} {download.progress()}"
+            msg += f"\n<b>☞ Processed:</b> {download.processed_bytes()} of {download.size()}"
+            msg += f"\n<b>☞ Speed:</b> {download.speed()} | <b>ETA:</b> {download.eta()}"
             if hasattr(download, 'seeders_num'):
                 try:
-                    msg += f"\n<b>Seeders:</b> {download.seeders_num()} | <b>Leechers:</b> {download.leechers_num()}"
+                    msg += f"\n<b>☞ Seeders:</b> {download.seeders_num()} | <b>Leechers:</b> {download.leechers_num()}"
                 except:
                     pass
         elif download.status() == MirrorStatus.STATUS_SEEDING:
-            msg += f"\n<b>Size: </b>{download.size()}"
-            msg += f"\n<b>Speed: </b>{download.upload_speed()}"
-            msg += f" | <b>Uploaded: </b>{download.uploaded_bytes()}"
-            msg += f"\n<b>Ratio: </b>{download.ratio()}"
+            msg += f"\n<b>☞ Size: </b>{download.size()}"
+            msg += f"\n<b>☞ Speed: </b>{download.upload_speed()}"
+            msg += f" | <b>☞ Uploaded: </b>{download.uploaded_bytes()}"
+            msg += f"\n<b>☞ Ratio: </b>{download.ratio()}"
             msg += f" | <b>Time: </b>{download.seeding_time()}"
         else:
-            msg += f"\n<b>Size: </b>{download.size()}"
-        msg += f"\n<code>/{BotCommands.CancelMirror} {download.gid()}</code>\n\n"
+            msg += f"\n<b>☞ Size: </b>{download.size()}"
+        msg += f"\n<b>☞ To Cancel:</b> <code>/{BotCommands.CancelMirror} {download.gid()}</code>\n\n"
     if len(msg) == 0:
         return None, None
     dl_speed = 0
