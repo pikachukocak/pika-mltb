@@ -301,13 +301,14 @@ class MirrorLeechListener:
     async def onUploadComplete(self, link, size, files, folders, typ, name, rclonePath=''):
         if self.isSuperGroup and config_dict['INCOMPLETE_TASK_NOTIFIER'] and DATABASE_URL:
             await DbManger().rm_complete_task(self.message.link)
-        msg = f"<b>Name: </b><code>{escape(name)}</code>\n\n<b>Size: </b>{get_readable_file_size(size)}"
+        msg = f'<b>_____《🐱 Pik4Bot 🐱》_____</b>\n\n<b>☞ Name</b>: <code>{escape(name)}</code>\n<b>☞ Size</b>: {get_readable_file_size(size)}'
         LOGGER.info(f'Done Uploading {name}')
         if self.isLeech:
-            msg += f'\n<b>Total Files: </b>{folders}'
+            msg += f'\n<b>☞ Total Files: </b>{folders}'
+            msg += f"\n<b>☞ Elapsed</b>: {get_readable_time(time() - self.extra_details['startTime'])}"
             if typ != 0:
-                msg += f'\n<b>Corrupted Files: </b>{typ}'
-            msg += f'\n<b>cc: </b>{self.tag}\n\n'
+                msg += f'\n<b>☞ Corrupted Files: </b>{typ}'
+            msg += f'\n\n<b>☞ Leech_By: </b>{self.tag}\n\n'
             if not files:
                 await sendMessage(self.message, msg)
             else:
@@ -329,16 +330,16 @@ class MirrorLeechListener:
                 await start_from_queued()
                 return
         else:
-            msg += f'\n\n<b>Type: </b>{typ}'
+            msg += f'\n<b>☞ Type: </b>{typ}'
             if typ == "Folder":
-                msg += f'\n<b>SubFolders: </b>{folders}'
-                msg += f'\n<b>Files: </b>{files}'
+                msg += f'\n<b>☞ SubFolders: </b>{folders}'
+                msg += f'\n<b>☞ Files: </b>{files}'
             if link or rclonePath and config_dict['RCLONE_SERVE_URL']:
                 buttons = ButtonMaker()
                 if link:
-                    buttons.ubutton("☁️ Cloud Link", link)
+                    buttons.ubutton("☁️ Google Drive", link)
                 else:
-                    msg += f'\n\nPath: <code>{rclonePath}</code>'
+                    msg += f'\n\n<b>☞ Path:</b> <code>{rclonePath}</code>'
                 if rclonePath and (RCLONE_SERVE_URL := config_dict['RCLONE_SERVE_URL']):
                     remote, path = rclonePath.split(':', 1)
                     url_path = rutils.quote(f'{path}')
@@ -351,17 +352,17 @@ class MirrorLeechListener:
                     share_url = f'{INDEX_URL}/{url_path}'
                     if typ == "Folder":
                         share_url += '/'
-                        buttons.ubutton("⚡ Index Link", share_url)
+                        buttons.ubutton("⚡ Google Index", share_url)
                     else:
-                        buttons.ubutton("⚡ Index Link", share_url)
+                        buttons.ubutton("⚡ Google Index", share_url)
                         if config_dict['VIEW_LINK']:
                             share_urls = f'{INDEX_URL}/{url_path}?a=view'
                             buttons.ubutton("🌐 View Link", share_urls)
                 button = buttons.build_menu(2)
             else:
-                msg += f'\n\nPath: <code>{rclonePath}</code>'
+                msg += f'\n\n<b>☞ Path:</b> <code>{rclonePath}</code>'
                 button = None
-            msg += f'\n\n<b>cc: </b>{self.tag}'
+            msg += f'\n\n<b>☞ Mirror_By: </b>{self.tag}'
             await sendMessage(self.message, msg, button)
             if self.seed:
                 if self.isZip:
