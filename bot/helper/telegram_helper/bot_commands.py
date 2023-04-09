@@ -4,55 +4,55 @@ from bot import CMD_SUFFIX
 class _BotCommands:
     def __init__(self):
         self.StartCommand = f'start{CMD_SUFFIX}'
-        self.MirrorCommand = [f'mirror{CMD_SUFFIX}', f'm{CMD_SUFFIX}']
+        self.MirrorCommand = [f'mirror2{CMD_SUFFIX}', f'm2{CMD_SUFFIX}']
         self.UnzipMirrorCommand = [
-            f'unzipmirror{CMD_SUFFIX}', f'uzm{CMD_SUFFIX}']
-        self.ZipMirrorCommand = [f'zipmirror{CMD_SUFFIX}', f'zm{CMD_SUFFIX}']
-        self.QbMirrorCommand = [f'qbmirror{CMD_SUFFIX}', f'qm{CMD_SUFFIX}']
+            f'unzipmirror2{CMD_SUFFIX}', f'uzm2{CMD_SUFFIX}']
+        self.ZipMirrorCommand = [f'zipmirror2{CMD_SUFFIX}', f'zm3{CMD_SUFFIX}']
+        self.QbMirrorCommand = [f'qbmirror2{CMD_SUFFIX}', f'qm2{CMD_SUFFIX}']
         self.QbUnzipMirrorCommand = [
-            f'qbunzipmirror{CMD_SUFFIX}', f'quzm{CMD_SUFFIX}']
+            f'qbunzipmirror2{CMD_SUFFIX}', f'quzm2{CMD_SUFFIX}']
         self.QbZipMirrorCommand = [
-            f'qbzipmirror{CMD_SUFFIX}', f'qzm{CMD_SUFFIX}']
-        self.YtdlCommand = [f'ytdl{CMD_SUFFIX}', f'y{CMD_SUFFIX}']
-        self.YtdlZipCommand = [f'ytdlzip{CMD_SUFFIX}', f'yz{CMD_SUFFIX}']
-        self.LeechCommand = [f'leech{CMD_SUFFIX}', f'l{CMD_SUFFIX}']
+            f'qbzipmirror2{CMD_SUFFIX}', f'qzm2{CMD_SUFFIX}']
+        self.YtdlCommand = [f'ytdl2{CMD_SUFFIX}', f'y2{CMD_SUFFIX}']
+        self.YtdlZipCommand = [f'ytdlzip2{CMD_SUFFIX}', f'yz2{CMD_SUFFIX}']
+        self.LeechCommand = [f'leech2{CMD_SUFFIX}', f'l2{CMD_SUFFIX}']
         self.UnzipLeechCommand = [
-            f'unzipleech{CMD_SUFFIX}', f'uzl{CMD_SUFFIX}']
-        self.ZipLeechCommand = [f'zipleech{CMD_SUFFIX}', f'zl{CMD_SUFFIX}']
-        self.QbLeechCommand = [f'qbleech{CMD_SUFFIX}', f'ql{CMD_SUFFIX}']
+            f'unzipleech2{CMD_SUFFIX}', f'uzl2{CMD_SUFFIX}']
+        self.ZipLeechCommand = [f'zipleech2{CMD_SUFFIX}', f'zl2{CMD_SUFFIX}']
+        self.QbLeechCommand = [f'qbleech2{CMD_SUFFIX}', f'ql2{CMD_SUFFIX}']
         self.QbUnzipLeechCommand = [
-            f'qbunzipleech{CMD_SUFFIX}', f'quzl{CMD_SUFFIX}']
+            f'qbunzipleech2{CMD_SUFFIX}', f'quzl2{CMD_SUFFIX}']
         self.QbZipLeechCommand = [
-            f'qbzipleech{CMD_SUFFIX}', f'qzl{CMD_SUFFIX}']
-        self.YtdlLeechCommand = [f'ytdlleech{CMD_SUFFIX}', f'yl{CMD_SUFFIX}']
+            f'qbzipleech2{CMD_SUFFIX}', f'qzl2{CMD_SUFFIX}']
+        self.YtdlLeechCommand = [f'ytdlleech2{CMD_SUFFIX}', f'yl2{CMD_SUFFIX}']
         self.YtdlZipLeechCommand = [
-            f'ytdlzipleech{CMD_SUFFIX}', f'yzl{CMD_SUFFIX}']
-        self.CloneCommand = f'clone{CMD_SUFFIX}'
-        self.CountCommand = f'count{CMD_SUFFIX}'
-        self.DeleteCommand = f'delete{CMD_SUFFIX}'
-        self.CancelMirror = f'cancel{CMD_SUFFIX}'
-        self.CancelAllCommand = f'cancelall{CMD_SUFFIX}'
-        self.ListCommand = f'list{CMD_SUFFIX}'
-        self.SearchCommand = f'search{CMD_SUFFIX}'
-        self.StatusCommand = [f'status{CMD_SUFFIX}', f's{CMD_SUFFIX}', 'sall']
-        self.UsersCommand = f'users{CMD_SUFFIX}'
-        self.AuthorizeCommand = f'auth{CMD_SUFFIX}'
-        self.UnAuthorizeCommand = f'unauth{CMD_SUFFIX}'
-        self.AddSudoCommand = f'addsudo{CMD_SUFFIX}'
-        self.RmSudoCommand = f'rmsudo{CMD_SUFFIX}'
+            f'ytdlzipleech2{CMD_SUFFIX}', f'yzl2{CMD_SUFFIX}']
+        self.CloneCommand = f'clone2{CMD_SUFFIX}'
+        self.CountCommand = f'count2{CMD_SUFFIX}'
+        self.DeleteCommand = f'delete2{CMD_SUFFIX}'
+        self.CancelMirror = f'cancel2{CMD_SUFFIX}'
+        self.CancelAllCommand = f'cancelall2{CMD_SUFFIX}'
+        self.ListCommand = f'list2{CMD_SUFFIX}'
+        self.SearchCommand = f'search2{CMD_SUFFIX}'
+        self.StatusCommand = [f'status2{CMD_SUFFIX}', f's{CMD_SUFFIX}', 'sall']
+        self.UsersCommand = f'users2{CMD_SUFFIX}'
+        self.AuthorizeCommand = f'auth2{CMD_SUFFIX}'
+        self.UnAuthorizeCommand = f'unauth2{CMD_SUFFIX}'
+        self.AddSudoCommand = f'addsudo2{CMD_SUFFIX}'
+        self.RmSudoCommand = f'rmsudo2{CMD_SUFFIX}'
         self.PingCommand = f'ping{CMD_SUFFIX}'
-        self.RestartCommand = f'restart{CMD_SUFFIX}'
-        self.StatsCommand = f'stats{CMD_SUFFIX}'
-        self.HelpCommand = f'help{CMD_SUFFIX}'
-        self.LogCommand = f'log{CMD_SUFFIX}'
-        self.ShellCommand = f'shell{CMD_SUFFIX}'
-        self.EvalCommand = f'eval{CMD_SUFFIX}'
-        self.ExecCommand = f'exec{CMD_SUFFIX}'
-        self.ClearLocalsCommand = f'clearlocals{CMD_SUFFIX}'
-        self.BotSetCommand = f'bsetting{CMD_SUFFIX}'
-        self.UserSetCommand = f'usetting{CMD_SUFFIX}'
-        self.BtSelectCommand = f'btsel{CMD_SUFFIX}'
-        self.RssCommand = f'rss{CMD_SUFFIX}'
+        self.RestartCommand = f'restart2{CMD_SUFFIX}'
+        self.StatsCommand = f'stats2{CMD_SUFFIX}'
+        self.HelpCommand = f'help2{CMD_SUFFIX}'
+        self.LogCommand = f'log2{CMD_SUFFIX}'
+        self.ShellCommand = f'shell2{CMD_SUFFIX}'
+        self.EvalCommand = f'eval2{CMD_SUFFIX}'
+        self.ExecCommand = f'exec2{CMD_SUFFIX}'
+        self.ClearLocalsCommand = f'clearlocals2{CMD_SUFFIX}'
+        self.BotSetCommand = f'bsetting2{CMD_SUFFIX}'
+        self.UserSetCommand = f'usetting2{CMD_SUFFIX}'
+        self.BtSelectCommand = f'btsel2{CMD_SUFFIX}'
+        self.RssCommand = f'rss2{CMD_SUFFIX}'
 
 
 BotCommands = _BotCommands()
