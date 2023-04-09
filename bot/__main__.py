@@ -56,12 +56,12 @@ async def start(client, message):
     reply_markup = buttons.build_menu(2)
     if await CustomFilters.authorized(client, message):
         start_string = f'''
-This bot can mirror all your links|files|torrents to Google Drive or any rclone cloud or to telegram.
-Type /{BotCommands.HelpCommand} to get a list of available commands
+<code>Hi, iam pik4bot, i can mirror all your links to Google Drive or to telegram!</code>\n
+<i>Type</i> /{BotCommands.HelpCommand} <i>to get a list of available commands.</i>
 '''
         await sendMessage(message, start_string, reply_markup)
     else:
-        await sendMessage(message, 'You Are not authorized user! Deploy your own mirror-leech bot', reply_markup)
+        await sendMessage(message, '<code>Oh sorry, you are not allowed to use pik4bot in private massage, please join the</code> <b><a href="https://t.me/+VyejY_I48AYxZjg1">Group</a></b> <code>to use this bot.</code>', reply_markup)
 
 
 async def restart(client, message):
