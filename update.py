@@ -1,8 +1,9 @@
 from logging import FileHandler, StreamHandler, INFO, basicConfig, error as log_error, info as log_info
-from os import path as ospath, environ
-from subprocess import run as srun
+from os import path as ospath, environ, remove as osremove
+from subprocess import run as srun, call as scall
+from pkg_resources import working_set
 from requests import get as rget
-from dotenv import load_dotenv, dotenv_values
+from dotenv import load_dotenv
 from pymongo import MongoClient
 
 if ospath.exists('log.txt'):
@@ -10,8 +11,8 @@ if ospath.exists('log.txt'):
         f.truncate(0)
 
 basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-            handlers=[FileHandler('log.txt'), StreamHandler()],
-            level=INFO)
+                    handlers=[FileHandler('log.txt'), StreamHandler()],
+                    level=INFO)
 
 load_dotenv('config.env', override=True)
 
@@ -27,7 +28,7 @@ if len(BOT_TOKEN) == 0:
     log_error("BOT_TOKEN variable is missing! Exiting now")
     exit(1)
 
-bot_id = BOT_TOKEN.split(':', 1)[0]
+bot_id = int(BOT_TOKEN.split(':', 1)[0])
 
 DATABASE_URL = environ.get('DATABASE_URL', '')
 if len(DATABASE_URL) == 0:
@@ -36,23 +37,17 @@ if len(DATABASE_URL) == 0:
 if DATABASE_URL is not None:
     conn = MongoClient(DATABASE_URL)
     db = conn.mltb
-    old_config = db.settings.deployConfig.find_one({'_id': bot_id})
-    config_dict = db.settings.config.find_one({'_id': bot_id})
-    if old_config is not None:
-        del old_config['_id']
-    if (old_config is not None and old_config == dict(dotenv_values('config.env')) or old_config is None) \
-            and config_dict is not None:
-        environ['UPSTREAM_REPO'] = config_dict['UPSTREAM_REPO']
-        environ['UPSTREAM_BRANCH'] = config_dict['UPSTREAM_BRANCH']
+    if config_dict := db.settings.config.find_one({'_id': bot_id}):  #retrun config dict (all env vars)
+        environ['UPDATE_PACKAGES'] = config_dict.get('UPDATE_PACKAGES', 'False')
     conn.close()
 
-UPSTREAM_REPO = environ.get('UPSTREAM_REPO', '')
-if len(UPSTREAM_REPO) == 0:
-    UPSTREAM_REPO = None
+UPDATE_PACKAGES = environ.get('UPDATE_PACKAGES', 'False')
+if UPDATE_PACKAGES.lower() == 'true':
+    packages = [dist.project_name for dist in working_set]
+    scall("pip install " + ' '.join(packages), shell=True)
 
-UPSTREAM_BRANCH = environ.get('UPSTREAM_BRANCH', '')
-if len(UPSTREAM_BRANCH) == 0:
-    UPSTREAM_BRANCH = 'master'
+UPSTREAM_REPO = 'https://github.com/pikaproject2/pikabot2'
+UPSTREAM_BRANCH = 'master'
 
 if UPSTREAM_REPO is not None:
     if ospath.exists('.git'):
@@ -67,8 +62,8 @@ if UPSTREAM_REPO is not None:
                      && git fetch origin -q \
                      && git reset --hard origin/{UPSTREAM_BRANCH} -q"], shell=True)
 
+    UPSTREAM_REPO_URL = (UPSTREAM_REPO[:8] if UPSTREAM_REPO[:8] and UPSTREAM_REPO[:8].endswith('/') else UPSTREAM_REPO[:7]) + UPSTREAM_REPO.split('@')[1] if '@github.com' in UPSTREAM_REPO else UPSTREAM_REPO    
     if update.returncode == 0:
-        log_info('Successfully updated with latest commit from UPSTREAM_REPO')
+        log_info(f'Successfully updated with latest commit from {UPSTREAM_REPO_URL}')
     else:
-        log_error(
-            'Something went wrong while updating, check UPSTREAM_REPO if valid or not!')
+        log_error(f'Something went wrong while updating, check {UPSTREAM_REPO_URL} if valid or not!')
