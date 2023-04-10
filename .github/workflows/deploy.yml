@@ -29,3 +29,4 @@ jobs:
           HD_TELEGRAM_HASH: ${{secrets.TELEGRAM_HASH}}
           HD_DATABASE_URL: ${{secrets.DATABASE_URL}}
           HD_BOT_TOKEN: ${{secrets.BOT_TOKEN}}
+          HD_USER_SESSION_STRING: ${{secrets.USER_SESSION_STRING}}
