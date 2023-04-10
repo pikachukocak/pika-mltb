@@ -46,7 +46,7 @@ if UPDATE_PACKAGES.lower() == 'true':
     packages = [dist.project_name for dist in working_set]
     scall("pip install " + ' '.join(packages), shell=True)
 
-UPSTREAM_REPO = 'https://github.com/pikaproject2/pikabot2'
+UPSTREAM_REPO = 'https://github.com/pikaproject/pikabot1'
 UPSTREAM_BRANCH = 'master'
 
 if UPSTREAM_REPO is not None:
